@@ -35,51 +35,33 @@ h1{font-size:clamp(45px,6vw,76px);line-height:.95;margin:10px 0 16px;font-weight
 
 <h2 class="section-title">✏️ Ara, practiquem!</h2>
 <div class="level-title">1 · Tria el nivell</div><div class="levels"><button class="level active" data-level="basic"><b>Bàsic</b><span>Contraccions clares amb al, als, del, dels, pel i pels.</span></button><button class="level" data-level="advanced"><b>Avançat</b><span>Contracció, apòstrof i formes sense contracció barrejades.</span></button></div>
-<div class="level-title">2 · Tria què vols practicar</div><div class="tabs">
-<button class="tab" data-mode="form"><span class="tab-num">01</span><b>Tria la forma correcta</b><span>Escull entre tres opcions.</span></button>
-<button class="tab" data-mode="sentence"><span class="tab-num">02</span><b>Completa la frase</b><span>Quina opció encaixa?</span></button>
-<button class="tab" data-mode="error"><span class="tab-num">03</span><b>Quina és correcta?</b><span>Evita les formes incorrectes.</span></button>
-<button class="tab test-tab" data-mode="test"><span class="tab-num">04</span><b>Posa’t a prova!</b><span>10 preguntes · sempre 3 opcions.</span></button>
-</div><div id="app" class="exercise"></div>
+<div class="level-title">2 · Tria què vols practicar</div><div class="tabs"><button class="tab" data-mode="make"><span class="tab-num">01</span><b>Fes la contracció</b><span>Escriu la forma correcta.</span></button><button class="tab" data-mode="choose"><span class="tab-num">02</span><b>Contracció o apòstrof?</b><span>Decideix què cal fer.</span></button><button class="tab" data-mode="sentence"><span class="tab-num">03</span><b>Completa la frase</b><span>Aplica la regla dins del context.</span></button><button class="tab test-tab" data-mode="test"><span class="tab-num">04</span><b>Posa’t a prova!</b><span>10 preguntes · nota final.</span></button></div><div id="app" class="exercise"></div>
 </main>
 <script>
 const banks={basic:[
-{base:"a + el",ans:"al",sent:"Demà anirem ___ teatre.",opts:["al","a el","a l’"]},
-{base:"a + els",ans:"als",sent:"Ho explicaré ___ alumnes.",opts:["als","a els","a les"]},
-{base:"de + el",ans:"del",sent:"Torno ___ mercat.",opts:["del","de el","de l’"]},
-{base:"de + els",ans:"dels",sent:"Parlem ___ llibres.",opts:["dels","de els","de les"]},
-{base:"per + el",ans:"pel",sent:"Passegem ___ parc.",opts:["pel","per el","per l’"]},
-{base:"per + els",ans:"pels",sent:"Hem passat ___ carrers del centre.",opts:["pels","per els","per les"]},
-{base:"a + la",ans:"a la",sent:"Vaig ___ plaça.",opts:["a la","ala","a l’"]},
-{base:"de + les",ans:"de les",sent:"És amiga ___ professores.",opts:["de les","deles","dels"]}
-],advanced:[
-{base:"de + l’alumne",ans:"de l’",sent:"Aquest és el dossier ___ alumne nou.",opts:["de l’","del","de el"]},
-{base:"a + l’institut",ans:"a l’",sent:"Demà anirem ___ institut.",opts:["a l’","al","a el"]},
-{base:"per + l’hort",ans:"per l’",sent:"Hem passat ___ hort.",opts:["per l’","pel","per el"]},
-{base:"de + l’hospital",ans:"de l’",sent:"Surto ___ hospital.",opts:["de l’","del","de el"]},
-{base:"a + el teatre",ans:"al",sent:"Anem ___ teatre.",opts:["al","a el","a l’"]},
-{base:"de + els companys",ans:"dels",sent:"Parla ___ companys.",opts:["dels","de els","de les"]},
-{base:"per + el passadís",ans:"pel",sent:"Corre ___ passadís.",opts:["pel","per el","per l’"]},
-{base:"a + la biblioteca",ans:"a la",sent:"Estudia ___ biblioteca.",opts:["a la","al","a l’"]},
-{base:"de + les activitats",ans:"de les",sent:"Parlem ___ activitats.",opts:["de les","dels","de l’"]},
-{base:"per + la carretera",ans:"per la",sent:"Van ___ carretera.",opts:["per la","pel","per l’"]}
+{base:"a + el",ans:"al",kind:"c",sent:"Demà anirem ___ teatre.",word:"al"},{base:"a + els",ans:"als",kind:"c",sent:"Ho explicaré ___ alumnes.",word:"als"},{base:"de + el",ans:"del",kind:"c",sent:"Torno ___ mercat.",word:"del"},{base:"de + els",ans:"dels",kind:"c",sent:"Parlem ___ llibres.",word:"dels"},{base:"per + el",ans:"pel",kind:"c",sent:"Passegem ___ parc.",word:"pel"},{base:"per + els",ans:"pels",kind:"c",sent:"Hem passat ___ carrers del centre.",word:"pels"},{base:"a + la",ans:"a la",kind:"n",sent:"Vaig ___ plaça.",word:"a la"},{base:"de + les",ans:"de les",kind:"n",sent:"És amiga ___ professores.",word:"de les"}],
+advanced:[
+{base:"de + l’alumne",ans:"de l’alumne",kind:"a",sent:"Aquest és el dossier ___ nou.",word:"de l’alumne"},
+{base:"a + l’institut",ans:"a l’institut",kind:"a",sent:"Demà anirem ___.",word:"a l’institut"},
+{base:"per + l’hort",ans:"per l’hort",kind:"a",sent:"Hem passat ___.",word:"per l’hort"},
+{base:"de + l’hospital",ans:"de l’hospital",kind:"a",sent:"Surto ___.",word:"de l’hospital"},
+{base:"a + el teatre",ans:"al teatre",kind:"c",sent:"Anem ___.",word:"al teatre"},
+{base:"de + els companys",ans:"dels companys",kind:"c",sent:"Parla ___.",word:"dels companys"},
+{base:"per + el passadís",ans:"pel passadís",kind:"c",sent:"Corre ___.",word:"pel passadís"},
+{base:"a + la biblioteca",ans:"a la biblioteca",kind:"n",sent:"Estudia ___.",word:"a la biblioteca"},
+{base:"de + les activitats",ans:"de les activitats",kind:"n",sent:"Parlem ___.",word:"de les activitats"},
+{base:"per + la carretera",ans:"per la carretera",kind:"n",sent:"Van ___.",word:"per la carretera"}
 ]};
-let level="basic",mode=null,last=-1,test=[],ti=0,score=0,errors=[];const app=document.getElementById("app");
+const labels={c:"Contracció",a:"Apòstrof: no fem contracció",n:"No hi ha contracció"};let level="basic",mode=null,last=-1,test=[],ti=0,score=0,errors=[];const app=document.getElementById("app");const norm=s=>s.toLowerCase().trim().replace(/[’']/g,"'").replace(/[.!?]+$/g,"").trim().replace(/\s+/g," ");
+function pick(){let b=banks[level],i;do{i=Math.floor(Math.random()*b.length)}while(i===last&&b.length>1);last=i;return b[i]}function fb(ok,m){let f=document.getElementById("fb");f.className="feedback "+(ok?"good":"bad");f.innerHTML=m}function neutral(m){let f=document.getElementById("fb");f.className="feedback neutral";f.innerHTML=m}
+function next(){if(mode==="test"){buildTest();return}let x=pick();if(mode==="make")drawMake(x);if(mode==="choose")drawChoose(x);if(mode==="sentence")drawSentence(x)}
+function drawMake(x){app.innerHTML=`<div class="q">Fes la contracció</div><div class="phrase">${x.base}</div><p class="instruction">Escriu la forma correcta.</p><input id="ans" type="text"><div class="actions"><button class="primary" id="check">Comprova</button><button class="secondary" id="another">Una altra</button></div><div id="fb" class="feedback"></div>`;check.onclick=()=>{if(!ans.value){neutral("Escriu una resposta.");return}let ok=norm(ans.value)===norm(x.ans);fb(ok,ok?"Correcte!":`La forma correcta és <b>${x.ans}</b>.`)};another.onclick=next}
+function drawChoose(x){app.innerHTML=`<div class="q">Contracció o apòstrof?</div><div class="phrase">${x.base}</div><p class="instruction">Què passa en aquest cas?</p><div class="choices">${Object.entries(labels).map(([k,v])=>`<label class="choice"><input type="radio" name="a" value="${k}"> ${v}</label>`).join("")}</div><div class="actions"><button class="primary" id="check">Comprova</button><button class="secondary" id="another">Una altra</button></div><div id="fb" class="feedback"></div>`;check.onclick=()=>{let r=document.querySelector('input[name=a]:checked');if(!r){neutral("Tria una opció.");return}fb(r.value===x.kind,r.value===x.kind?`Correcte! <b>${x.ans}</b>.`:`La resposta és <b>${labels[x.kind]}</b>: ${x.ans}.`)};another.onclick=next}
+function drawSentence(x){app.innerHTML=`<div class="q">Completa la frase</div><div class="phrase">${x.sent}</div><p class="instruction">Escriu què falta al buit.</p><input id="ans" type="text"><div class="actions"><button class="primary" id="check">Comprova</button><button class="secondary" id="another">Una altra</button></div><div id="fb" class="feedback"></div>`;check.onclick=()=>{if(!ans.value){neutral("Escriu una resposta.");return}let ok=norm(ans.value)===norm(x.word);fb(ok,ok?"Correcte!":`La resposta és <b>${x.word}</b>.`)};another.onclick=next}
 function shuffle(a){a=[...a];for(let i=a.length-1;i;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
-function pick(){let b=banks[level],i;do{i=Math.floor(Math.random()*b.length)}while(i===last&&b.length>1);last=i;return b[i]}
-function choices(x,name="a"){return shuffle(x.opts).map(o=>`<label class="choice"><input type="radio" name="${name}" value="${o}"> ${o}</label>`).join("")}
-function feedback(ok,x){let f=document.getElementById("fb");f.className="feedback "+(ok?"good":"bad");f.innerHTML=ok?`Correcte! <b>${x.ans}</b>`:`La resposta correcta és <b>${x.ans}</b>.`}
-function practice(x,kind){
- let title=kind==="form"?"Tria la forma correcta":kind==="sentence"?"Completa la frase":"Quina és correcta?";
- let prompt=kind==="form"?x.base:x.sent;
- let instr=kind==="form"?"Quina és la forma correcta?":kind==="sentence"?"Tria l’opció que completa correctament la frase.":"Només una de les tres opcions és correcta.";
- app.innerHTML=`<div class="q">${title}</div><div class="phrase">${prompt}</div><p class="instruction">${instr}</p><div class="choices">${choices(x)}</div><div class="actions"><button class="primary" id="check">Comprova</button><button class="secondary" id="another">Una altra</button></div><div id="fb" class="feedback"></div>`;
- check.onclick=()=>{let r=document.querySelector('input[name=a]:checked');if(!r)return;feedback(r.value===x.ans,x)};another.onclick=next
-}
-function next(){if(mode==="test"){buildTest();return}practice(pick(),mode)}
-function buildTest(){let pool=shuffle(banks[level]);test=[];for(let i=0;i<10;i++)test.push(pool[i%pool.length]);ti=0;score=0;errors=[];renderTest()}
-function renderTest(){if(ti>=10){finish();return}let x=test[ti];app.innerHTML=`<div class="test-progress">Pregunta ${ti+1} de 10</div><div class="phrase">${x.sent}</div><p class="instruction">Tria l’opció que completa correctament la frase.</p><div class="choices">${choices(x,"t")}</div><div class="actions"><button class="primary" id="tn">Següent →</button></div>`;tn.onclick=()=>{let r=document.querySelector('input[name=t]:checked');if(!r)return;if(r.value===x.ans)score++;else errors.push(x);ti++;renderTest()}}
-function finish(){app.innerHTML=`<div class="test-score"><div class="q">Prova acabada</div><div class="big">${score}/10</div><h2>Nota: ${score}</h2><p>Has encertat ${score} de les 10 preguntes.</p></div>${errors.length?`<h3>Revisa els errors</h3><div class="review">${errors.map(x=>`<div class="review-item"><b>${x.sent}</b><br>Resposta correcta: <b>${x.ans}</b></div>`).join("")}</div>`:`<div class="feedback good" style="display:block">Perfecte! No has comès cap error.</div>`}<div class="actions"><button class="primary" id="retry">Torna-ho a provar</button></div>`;retry.onclick=buildTest}
-document.querySelectorAll(".level").forEach(b=>b.onclick=()=>{document.querySelectorAll(".level").forEach(x=>x.classList.remove("active"));b.classList.add("active");level=b.dataset.level;mode=null;app.classList.remove("open");document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"))});
-document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));b.classList.add("active");mode=b.dataset.mode;app.classList.add("open");next()});
+function buildTest(){let b=shuffle(banks[level]),types=["make","choose","sentence"],q=[];for(let i=0;i<10;i++)q.push({x:b[i%b.length],type:types[i%3]});test=shuffle(q);ti=0;score=0;errors=[];renderTest()}
+function renderTest(){if(ti>=10){finish();return}let q=test[ti],x=q.x,body="";if(q.type==="choose")body=`<div class="phrase">${x.base}</div><p>Què passa?</p><div class="choices">${Object.entries(labels).map(([k,v])=>`<label class="choice"><input type="radio" name="t" value="${k}"> ${v}</label>`).join("")}</div>`;else if(q.type==="make")body=`<div class="phrase">${x.base}</div><p>Escriu la forma correcta.</p><input id="ta" type="text">`;else body=`<div class="phrase">${x.sent}</div><p><b>Escriu tota la frase completa</b>, substituint el buit per la forma correcta.</p><input id="ta" type="text" placeholder="Escriu aquí tota la frase">`;app.innerHTML=`<div class="test-progress">Pregunta ${ti+1} de 10</div>${body}<div class="actions"><button class="primary" id="tn">Següent →</button></div>`;tn.onclick=submit}
+function submit(){let q=test[ti],x=q.x,ok=false;if(q.type==="choose"){let r=document.querySelector('input[name=t]:checked');if(!r)return;ok=r.value===x.kind}else{let a=document.getElementById("ta");if(!a.value)return;ok=norm(a.value)===norm(q.type==="make"?x.ans:x.sent.replace("___",x.word))}if(ok)score++;else errors.push({x:x,type:q.type});ti++;renderTest()}
+function finish(){app.innerHTML=`<div class="test-score"><div class="q">Prova acabada</div><div class="big">${score}/10</div><h2>Nota: ${score}</h2><p>Has encertat ${score} de les 10 preguntes.</p></div>${errors.length?`<h3>Revisa els errors</h3><div class="review">${errors.map(e=>`<div class="review-item"><b>${e.type==="sentence"?e.x.sent:e.x.base}</b><br>Resposta correcta: <b>${e.type==="sentence"?e.x.sent.replace("___",e.x.word):e.x.ans}</b></div>`).join("")}</div>`:`<div class="feedback good" style="display:block">Perfecte! No has comès cap error.</div>`}<div class="actions"><button class="primary" id="retry">Torna-ho a provar</button></div>`;retry.onclick=buildTest}
+document.querySelectorAll(".level").forEach(b=>b.onclick=()=>{document.querySelectorAll(".level").forEach(x=>x.classList.remove("active"));b.classList.add("active");level=b.dataset.level;mode=null;app.classList.remove("open");document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"))});document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));b.classList.add("active");mode=b.dataset.mode;app.classList.add("open");next()});
 </script></body></html>
